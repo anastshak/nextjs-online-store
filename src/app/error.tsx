@@ -18,7 +18,7 @@ export default function Error({
       <h2>Something went wrong!</h2>
       <button
         onClick={() => reset()}
-        className="mt-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg cursor-pointer"
+        className="mt-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg"
       >
         Try again
       </button>

@@ -3,6 +3,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
 import { Button } from '@/components/ui/button';
+
 import { cn } from '@/lib/utils';
 
 type ButtonBaseProps = ComponentPropsWithoutRef<typeof Button>;
@@ -23,7 +24,7 @@ export default function ActionButton({
     <Button
       {...props}
       variant={active ? 'secondary' : 'outline'}
-      className={cn(className, active && activeClassName, 'cursor-pointer')}
+      className={cn(className, active && activeClassName)}
     >
       {children}
     </Button>

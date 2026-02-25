@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/sidebar';
 
 import { getCategories } from '@/lib/api/categories';
+
 import type { Category } from '@/types/product';
 
 export default async function CategoriesSidebar() {

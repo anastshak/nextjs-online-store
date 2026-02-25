@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Search } from 'lucide-react';
 
@@ -10,7 +10,6 @@ import { Input } from '@/components/ui/input';
 export default function SearchBar() {
   const router = useRouter();
   const params = useSearchParams();
-  const pathname = usePathname();
   const initialQuery = params.get('search') ?? '';
   const [query, setQuery] = useState(initialQuery);
 
@@ -18,18 +17,19 @@ export default function SearchBar() {
     const handler = setTimeout(() => {
       const queryValue = query.trim();
 
-      if (pathname !== '/') return;
+      const url = new URL(window.location.href);
 
-      if (!queryValue) {
-        router.replace('/');
-        return;
+      if (queryValue) {
+        url.searchParams.set('search', queryValue);
+      } else {
+        url.searchParams.delete('search');
       }
 
-      router.replace(`/?search=${encodeURIComponent(queryValue)}`);
+      router.replace(`${url.pathname}?${url.searchParams.toString()}`);
     }, 400);
 
     return () => clearTimeout(handler);
-  }, [pathname, query, router]);
+  }, [query, router]);
 
   return (
     <div className="relative w-60">

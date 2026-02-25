@@ -9,13 +9,13 @@ export default async function ProductPage(props: PageProps<'/products/[category]
   const product = await getProduct(id);
 
   return (
-    <div className="px-6 h-[calc(100vh-116px)]">
+    <>
       <div className="flex flex-col items-center md:flex-row gap-10">
         <ProductGallery images={product.images} title={product.title} />
         <ProductInfo product={product} />
       </div>
 
       <ProductReviews reviews={product.reviews} />
-    </div>
+    </>
   );
 }

@@ -2,6 +2,7 @@ import type { Product } from '@/types/product';
 
 import { Badge } from '@/components/ui/badge';
 
+import Title from '@/components/common/Title';
 import ProductInfoString from '@/components/common/ProductInfoString';
 import RatingStars from '@/components/common/RatingStars';
 
@@ -12,14 +13,14 @@ interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
-  const { title, description, price, discountPercentage, rating, stock, brand } = product;
+  const { id, title, description, price, discountPercentage, rating, stock, brand } = product;
 
   const hasDiscount = discountPercentage > 0;
   const oldPrice = hasDiscount ? (price / (1 - discountPercentage / 100)).toFixed(2) : null;
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold">{title}</h1>
+      <Title text={title} />
 
       <RatingStars rating={rating} />
 
@@ -35,7 +36,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <ProductInfoString title="stock" info={stock.toString()} />
       </div>
 
-      <ProductActions />
+      <ProductActions productId={id} price={price} />
 
       <p className="pt-4 text-muted-foreground">{description}</p>
     </div>
